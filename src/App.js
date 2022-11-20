@@ -10,16 +10,20 @@ function App() {
     function incNbrRec(i, endNbr, elm) {
       if (i + inc < endNbr) {
         if (decimal) {
-          elm.innerHTML = Math.ceil(i * 100) / 100;
+          elm.innerHTML = (Math.ceil(i * 100) / 100)
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         } else {
-          elm.innerHTML = Math.round((i * 100) / 100);
+          elm.innerHTML = Math.round((i * 100) / 100)
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
 
         setTimeout(function () {
           incNbrRec(i + inc, endNbr, elm);
         }, 1);
       } else if (i != endNbr && i + inc >= endNbr) {
-        elm.innerHTML = endNbr;
+        elm.innerHTML = endNbr.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       }
     }
     incNbrRec(inc, endNbr, elm);
